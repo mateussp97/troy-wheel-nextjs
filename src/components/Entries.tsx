@@ -1,15 +1,6 @@
-import { SearchIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Flex,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Textarea,
-  useToast,
-} from "@chakra-ui/react";
+import { Button, Flex, Textarea, useToast } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import React, { ChangeEvent, Fragment, useState } from "react";
+import { ChangeEvent, Fragment } from "react";
 import { ListArrayAtom } from "../atoms/WheelAtom";
 
 export default function Entries() {
@@ -74,13 +65,12 @@ export default function Entries() {
         </Button>
       </Flex>
 
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          children={<SearchIcon color="gray.300" />}
-        />
+      {/* <InputGroup>
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color="gray.300" />
+        </InputLeftElement>
         <Input type="tel" placeholder="Phone number" />
-      </InputGroup>
+      </InputGroup> */}
 
       <Textarea
         rows={16}
