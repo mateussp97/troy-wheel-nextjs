@@ -1,5 +1,6 @@
+import { Flex, Heading } from "@chakra-ui/react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   IsSpinningAtom,
   IsWinnerModalOpenAtom,
@@ -49,21 +50,31 @@ export default function Wheel() {
   }
 
   return (
-    <div>
-      <h1 className="text-center">Click to spin</h1>
+    <Flex
+      w="100%"
+      padding="1rem"
+      flexDirection="column"
+      alignItems="center"
+      justify="start"
+      gridGap="1rem"
+    >
+      <Heading>Click to spin</Heading>
+
       <SC.WheelContainer>
         <SC.WheelWrapper
           className={randomWinnerIndex !== null ? "spinning" : ""}
           onClick={handleOnClickSpin}
+          // @ts-ignore
           style={wheelWrapperVars}
         >
           {listArray.map((item, index) => (
+            // @ts-ignore
             <SC.WheelItem style={{ "--item-nb": index }} key={index}>
               {item}
             </SC.WheelItem>
           ))}
         </SC.WheelWrapper>
       </SC.WheelContainer>
-    </div>
+    </Flex>
   );
 }

@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Grid,
   Tab,
   TabList,
   TabPanel,
@@ -31,14 +30,15 @@ const Home: NextPage = () => {
           h="4rem"
           borderBottom="1px solid"
           borderColor="gray.200"
-        ></Box>
+        />
 
-        <Grid
+        <Flex
           w="100%"
           h="calc(100vh - 4rem)"
+          display="grid"
           gridTemplateColumns="0.5fr 1fr 0.5fr"
         >
-          <div></div>
+          <Flex w="100%" />
           <Wheel />
           <Flex w="100%" h="100%" p="1rem">
             <Tabs w="100%" size="md" variant="enclosed">
@@ -78,7 +78,7 @@ const Home: NextPage = () => {
               </TabPanels>
             </Tabs>
           </Flex>
-        </Grid>
+        </Flex>
       </Flex>
       <WinnerModal />
     </Fragment>
