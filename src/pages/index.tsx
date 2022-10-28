@@ -31,7 +31,6 @@ const Home: NextPage = () => {
           borderBottom="1px solid"
           borderColor="gray.200"
         />
-
         <Flex
           w="100%"
           h="calc(100vh - 4rem)"

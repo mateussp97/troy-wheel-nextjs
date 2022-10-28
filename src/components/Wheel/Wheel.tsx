@@ -59,7 +59,6 @@ export default function Wheel() {
       gridGap="1rem"
     >
       <Heading>Click to spin</Heading>
-
       <SC.WheelContainer>
         <SC.WheelWrapper
           className={randomWinnerIndex !== null ? "spinning" : ""}
