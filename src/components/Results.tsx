@@ -29,8 +29,8 @@ export default function Results() {
     <Fragment>
       <Button onClick={handleClearWinnersArray}>Clear the list</Button>
       <OrderedList>
-        {winnersArray.map((winner) => (
-          <ListItem>{winner}</ListItem>
+        {winnersArray.map((winner, index) => (
+          <ListItem key={index}>{winner}</ListItem>
         ))}
       </OrderedList>
     </Fragment>
