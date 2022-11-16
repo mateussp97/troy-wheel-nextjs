@@ -1,5 +1,5 @@
 import { useAtomValue } from "jotai";
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ColorArrayAtom, NameArrayAtom } from "../../atoms/WheelAtom";
 
 const NewWheel = ({
@@ -22,11 +22,10 @@ const NewWheel = ({
   let currentSegment = "";
   let isStarted = false;
   const [isFinished, setFinished] = useState(false);
-  let timerHandle = 0;
+  let timerHandle = 0 as any;
   const timerDelay = names.length;
   let angleCurrent = 0;
   let angleDelta = 0;
-  let canvasContext: any = null;
   let maxSpeed = 0;
   const upTime = names.length * upDuration;
   const downTime = names.length * downDuration;
@@ -34,6 +33,8 @@ const NewWheel = ({
   let frames = 0;
   const centerX = 300;
   const centerY = 300;
+
+  const canvasContext = useRef<any>(null);
 
   useEffect(() => {
     wheelInit();
@@ -48,7 +49,7 @@ const NewWheel = ({
   };
 
   const initCanvas = () => {
-    let canvas = document.getElementById("canvas");
+    let canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
     if (navigator.appVersion.indexOf("MSIE") !== -1) {
       canvas = document.createElement("canvas");
@@ -59,7 +60,7 @@ const NewWheel = ({
     }
 
     canvas?.addEventListener("click", spin, false);
-    canvasContext = canvas?.getContext("2d");
+    canvasContext.current = canvas?.getContext("2d");
   };
 
   const spin = () => {
@@ -136,7 +137,7 @@ const NewWheel = ({
   };
 
   const drawSegment = (key: any, lastAngle: any, angle: any) => {
-    const ctx = canvasContext;
+    const ctx = canvasContext.current;
     const value = names[key];
     ctx.save();
     ctx.beginPath();
@@ -157,7 +158,7 @@ const NewWheel = ({
   };
 
   const drawWheel = () => {
-    const ctx = canvasContext;
+    const ctx = canvasContext.current;
     let lastAngle = angleCurrent;
     const len = names.length;
     const PI2 = Math.PI * 2;
@@ -196,7 +197,7 @@ const NewWheel = ({
   };
 
   const drawNeedle = () => {
-    const ctx = canvasContext;
+    const ctx = canvasContext.current;
     ctx.lineWidth = 1;
     ctx.strokeStyle = contrastColor || "white";
     ctx.fileStyle = contrastColor || "white";
@@ -220,7 +221,7 @@ const NewWheel = ({
   };
 
   const clear = () => {
-    const ctx = canvasContext;
+    const ctx = canvasContext.current;
     ctx.clearRect(0, 0, 1000, 800);
   };
 

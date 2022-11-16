@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import type { NextPage } from "next";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import {
   IsWinnerModalOpenAtom,
   NameArrayAtom,
@@ -19,7 +19,6 @@ import {
 } from "../atoms/WheelAtom";
 import Entries from "../components/Entries";
 import WinnerModal from "../components/Modals/WinnerModal";
-import NewWheel from "../components/NewWheel/NewWheel";
 import Results from "../components/Results";
 import Wheel from "../components/Wheel/Wheel";
 
@@ -50,9 +49,9 @@ const Home: NextPage = () => {
         >
           <Flex w="100%" />
 
-          {/* <Wheel /> */}
+          <Wheel />
 
-          <NewWheel
+          {/* <NewWheel
             onFinished={(winner: string) => onFinished(winner)}
             primaryColor="black"
             // primaryColoraround="#ffffffb4"
@@ -62,7 +61,7 @@ const Home: NextPage = () => {
             size={300}
             upDuration={50}
             downDuration={1000}
-          />
+          /> */}
 
           <Flex w="100%" h="100%" p="1rem">
             <Tabs w="100%" size="md" variant="enclosed">
