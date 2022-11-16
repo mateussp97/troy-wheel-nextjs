@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-export const ListArrayAtom = atom<string[]>([
+export const NameArrayAtom = atom<string[]>([
   "Ali",
   "Beatriz",
   "Charles",
@@ -9,6 +9,17 @@ export const ListArrayAtom = atom<string[]>([
   "Fatima",
   "Gabriel",
   "Hanna",
+]);
+
+export const ColorArrayAtom = atom<string[]>([
+  "#EE4040",
+  "#F0CF50",
+  "#815CD1",
+  "#3DA5E0",
+  "#34A24F",
+  "#F9AA1F",
+  "#EC3F3F",
+  "#FF9000",
 ]);
 
 export const WinnersArrayAtom = atom<string[]>([]);

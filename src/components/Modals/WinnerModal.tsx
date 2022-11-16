@@ -12,8 +12,9 @@ import {
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import React, { useRef } from "react";
 import {
+  ColorArrayAtom,
   IsWinnerModalOpenAtom,
-  ListArrayAtom,
+  NameArrayAtom,
   WinnersArrayAtom,
 } from "../../atoms/WheelAtom";
 
@@ -28,14 +29,23 @@ export default function WinnerModal() {
   }
 
   const winnersArray = useAtomValue(WinnersArrayAtom);
-  const setList = useSetAtom(ListArrayAtom);
+  const [names, setNames] = useAtom(NameArrayAtom);
+  const setColors = useSetAtom(ColorArrayAtom);
 
   const lastWinnerIndex = winnersArray.length - 1;
   const lastWinnerName = winnersArray[lastWinnerIndex];
+  const winnerIndexOnNamesArray = names.findIndex(
+    (name) => name === lastWinnerName
+  );
 
   function handleRemoveCurrentWinner() {
-    setList((currentArray) =>
+    setNames((currentArray) =>
       currentArray.filter((currentItem) => currentItem !== lastWinnerName)
+    );
+    setColors((currentArray) =>
+      currentArray.filter(
+        (currentItem, currentIndex) => currentIndex !== winnerIndexOnNamesArray
+      )
     );
 
     toast({
@@ -67,7 +77,7 @@ export default function WinnerModal() {
 
         <AlertDialogBody>
           Click the buttons below to close the modal or remove {lastWinnerName}{" "}
-          from the list:
+          from the list.
         </AlertDialogBody>
 
         <AlertDialogFooter

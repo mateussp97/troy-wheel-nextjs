@@ -9,18 +9,29 @@ import {
   Tag,
   TagLabel,
 } from "@chakra-ui/react";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import type { NextPage } from "next";
-import { Fragment } from "react";
-import { ListArrayAtom, WinnersArrayAtom } from "../atoms/WheelAtom";
+import { Fragment, useEffect } from "react";
+import {
+  IsWinnerModalOpenAtom,
+  NameArrayAtom,
+  WinnersArrayAtom,
+} from "../atoms/WheelAtom";
 import Entries from "../components/Entries";
 import WinnerModal from "../components/Modals/WinnerModal";
+import NewWheel from "../components/NewWheel/NewWheel";
 import Results from "../components/Results";
 import Wheel from "../components/Wheel/Wheel";
 
 const Home: NextPage = () => {
-  const winnersArray = useAtomValue(WinnersArrayAtom);
-  const listArray = useAtomValue(ListArrayAtom);
+  const listArray = useAtomValue(NameArrayAtom);
+  const setIsOpen = useSetAtom(IsWinnerModalOpenAtom);
+  const [winnersArray, setWinnersArray] = useAtom(WinnersArrayAtom);
+
+  const onFinished = (winner: string) => {
+    setWinnersArray((prevArray) => [...prevArray, winner]);
+    setIsOpen(true);
+  };
 
   return (
     <Fragment>
@@ -38,7 +49,21 @@ const Home: NextPage = () => {
           gridTemplateColumns="0.5fr 1fr 0.5fr"
         >
           <Flex w="100%" />
-          <Wheel />
+
+          {/* <Wheel /> */}
+
+          <NewWheel
+            onFinished={(winner: string) => onFinished(winner)}
+            primaryColor="black"
+            // primaryColoraround="#ffffffb4"
+            contrastColor="white"
+            buttonText="Spin"
+            isOnlyOnce={false}
+            size={300}
+            upDuration={50}
+            downDuration={1000}
+          />
+
           <Flex w="100%" h="100%" p="1rem">
             <Tabs w="100%" size="md" variant="enclosed">
               <TabList>

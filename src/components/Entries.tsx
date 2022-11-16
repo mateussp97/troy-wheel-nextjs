@@ -1,11 +1,11 @@
 import { Button, Flex, Textarea, useToast } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { ChangeEvent, Fragment } from "react";
-import { ListArrayAtom } from "../atoms/WheelAtom";
+import { NameArrayAtom } from "../atoms/WheelAtom";
 
 export default function Entries() {
   const toast = useToast();
-  const [list, setList] = useAtom(ListArrayAtom);
+  const [list, setList] = useAtom(NameArrayAtom);
 
   function shuffle(array: string[]) {
     const newArray = [...array];
